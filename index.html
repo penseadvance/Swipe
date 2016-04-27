@@ -9,21 +9,45 @@
 
 /* Swipe 2 required styles */
 
-.swipe {
-  overflow: hidden;
-  visibility: hidden;
-  position: relative;
-}
-.swipe-wrap {
-  overflow: hidden;
-  position: relative;
-}
-.swipe-wrap > div {
-  float:left;
-  width:100%;
-  position: relative;
-}
+  .swipe {
+    overflow: hidden;
+    visibility: hidden;
+    position: relative;
+  }
+  .swipe-wrap {
+    overflow: hidden;
+    position: relative;
+  }
+  .swipe-wrap > div {
+    float:left;
+    width:100%;
+    position: relative;
+  }
 
+  .swipe-bullets {
+    text-align: center;
+  }
+
+  .swipe-bullets > li {
+    display: inline-block;
+  }
+  
+  .swipe-bullets > li:before {
+    content: "";
+    display: inline-block;
+    width:  10px;
+    height: 10px;
+    margin-right: 5px;
+    
+    border: 1px solid #333;
+    border-radius: 20px;
+    transition: all .4s ease-out;
+  }
+  
+  .swipe-bullets > li.is-active:before {
+    background: #333;
+  }
+  
 /* END required styles */
 
 </style>
@@ -87,6 +111,7 @@ window.mySwipe = Swipe(elem, {
   // stopPropagation: true,
   // callback: function(index, element) {},
   // transitionEnd: function(index, element) {}
+  bullets: true
 });
 
 // with jQuery

@@ -464,6 +464,44 @@ function Swipe(container, options) {
     window.onresize = function () { setup() }; // to play nice with old IE
 
   }
+  
+  // Bullets
+  function addBullets(container) {
+    // Inserts the bullet's <ul>
+    var ul = document.createElement("ul");
+    ul.setAttribute("class", "swipe-bullets");
+    container.appendChild(ul);
+    
+    var slides = [];
+    
+    // Utility to activate the slide
+    var activateSlide = function(el, slideIndex, duration) {
+      // Remove .is-active
+      for(var x = 0; x < ul.childNodes.length; x++) {
+        ul.childNodes[x].classList.remove("is-active");
+      }
+      console.log(slideIndex)
+      el.classList.add("is-active");
+      slide(slideIndex, duration);
+    }  
+
+    // A bullet for each slide
+    for(var i = 0; i < length; i++) {
+      slides[i] = document.createElement("li");
+      slides[i].setAttribute("class", "swipe-bullets--item");
+      slides[i].setAttribute("data-index", i);
+      ul.appendChild(slides[i]);
+      
+      slides[i].addEventListener("click", function(e) {
+        var index = this.getAttribute("data-index");
+        activateSlide(this, index, 400);
+      });
+    }
+    
+    slides[0].classList.add("is-active");
+  }
+  
+  if(options.bullets) addBullets(container);
 
   // expose the Swipe API
   return {
@@ -557,6 +595,7 @@ function Swipe(container, options) {
   }
 
 }
+
 
 
 if ( window.jQuery || window.Zepto ) {
