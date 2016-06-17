@@ -568,3 +568,8 @@ if ( window.jQuery || window.Zepto ) {
     }
   })( window.jQuery || window.Zepto )
 }
+
+// commonjs
+if( typeof module !== "undefined" ){
+  module.exports = Swipe;
+}
